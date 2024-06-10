@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 22:07:24 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/10 22:37:31 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/10 22:45:24 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main(void)
 	write(1, &symbol, 1);
 	symbol = *mod + '0';
 	write(1, &symbol, 1);
+	free(div);
+	free(mod);
 	return (0);
-}
-*/
+}*/
