@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 21:19:12 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/10 21:32:27 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/10 22:47:54 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_swap(int *a, int *b)
 	*temp = *a;
 	*a = *b;
 	*b = *temp;
+	free(temp);
 }
 /*
 int	main(void)
