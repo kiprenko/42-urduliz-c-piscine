@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 19:00:06 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/09 19:11:50 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:41:49 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -19,7 +19,7 @@ void	ft_is_negative(int n)
 
 	positive = 'P';
 	negative = 'N';
-	if (n > 0)
+	if (n >= 0)
 	{
 		write(1, &positive, 1);
 	}
