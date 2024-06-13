@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 21:09:57 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/09 21:58:20 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/13 22:45:48 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ void	ft_putnbr(int nb)
 {
 	char	symbol;
 
+	if (nb == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		return ;
+	}
 	if (nb < 0)
 	{
 		symbol = '-';
@@ -49,7 +54,7 @@ int	main(void)
 	write(1, &new_line, 1);
 	ft_putnbr(-875);
 	write(1, &new_line, 1);
-	ft_putnbr(137081);
+	ft_putnbr(-2147483648);
 	return (0);
 }
 */
