@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 22:40:53 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/10 23:07:18 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/13 21:59:53 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_ultimate_div_mod(int *a, int *b)
 	*a = div;
 	*b = mod;
 }
-
+/*
 int	main(void)
 {
 	int		a;
@@ -37,4 +37,4 @@ int	main(void)
 	write(1, &symbol, 1);
 	symbol = b + '0';
 	write(1, &symbol, 1);
-}
+}*/
