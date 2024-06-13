@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 21:04:51 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/12 21:24:20 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/13 22:10:17 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@ void	ft_rev_int_tab(int *tab, int size)
 	int	t;
 	int	i;
 
+	if (size < 2)
+	{
+		return ;
+	}
 	i = 0;
-	while (i <= size / 2)
+	while (i < size / 2)
 	{
 		t = tab[i];
 		tab[i] = tab[size - 1 - i];
