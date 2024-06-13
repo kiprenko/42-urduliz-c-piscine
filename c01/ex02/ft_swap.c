@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 21:19:12 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/10 22:47:54 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/13 21:57:25 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 
 void	ft_swap(int *a, int *b)
 {
-	int	*temp;
+	int	temp;
 
-	temp = (int *) malloc(sizeof(int));
-	*temp = *a;
+	temp = *a;
 	*a = *b;
-	*b = *temp;
-	free(temp);
+	*b = temp;
 }
 /*
 int	main(void)
