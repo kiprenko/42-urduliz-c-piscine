@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 21:11:11 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/15 21:48:17 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/15 21:49:17 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -36,7 +36,7 @@ void	ft_putstr_non_printable(char *str)
 				}
 				else
 				{
-					c = rem + 'A' - 10;
+					c = rem + 'a' - 10;
 					write(1, &c, 1);
 				}
 				dec /= 16;
