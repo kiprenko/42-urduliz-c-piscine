@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 16:57:37 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/16 17:30:34 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/16 17:34:07 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -43,11 +43,9 @@ int	main(void)
 	char	str[] = "Nobody knows I use ChatGPT.";
 	char	to_find[] = "knows";
 	char	*found = ft_strstr(str, to_find);
-	int	i = 0;
-	char	c;
 	while (*found != '\0')
 	{
 		write(1, found, 1);
 		found++;	
 	}
-}*/	
+}*/
