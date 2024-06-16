@@ -6,14 +6,14 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 20:20:16 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/15 21:07:31 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/16 19:35:52 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
 
 unsigned int	ft_strlen(char *str)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -26,10 +26,10 @@ unsigned int	ft_strlen(char *str)
 unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
 	unsigned int	i;
-	int				srclen;
+	unsigned int	srclen;
 
 	srclen = ft_strlen(src);
-	if (srclen > 0)
+	if (size > 0)
 	{
 		i = 0;
 		while (src[i] != '\0' && i < size - 1)
