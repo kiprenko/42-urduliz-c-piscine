@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 20:11:05 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/16 21:16:16 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/16 21:30:40 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -14,7 +14,7 @@
 unsigned int	ft_isspace(char c)
 {
 	if (c == ' ' || c == '\f' || c == '\n'
-			|| c == '\r' || c == '\t' || c == '\v')
+		|| c == '\r' || c == '\t' || c == '\v')
 	{
 		return (1);
 	}
@@ -23,8 +23,8 @@ unsigned int	ft_isspace(char c)
 
 unsigned int	ft_nbrlen(char *str)
 {
-	int	i;
-	int	nbrlen;
+	int		i;
+	int		nbrlen;
 	char	c;
 
 	i = 0;
@@ -32,13 +32,11 @@ unsigned int	ft_nbrlen(char *str)
 	while (str[i] != '\0')
 	{
 		c = str[i];
-		printf("%c", c);
 		if (c != '-' && c != '+' && !(c >= '0' && c <= '9')
-				&& ft_isspace(c) == 0)
+			&& ft_isspace(c) == 0)
 		{
 			break ;
 		}
-
 		if (c != '-' && c != '+' && ft_isspace(c) == 0)
 		{
 			nbrlen++;
@@ -48,35 +46,37 @@ unsigned int	ft_nbrlen(char *str)
 	return (nbrlen);
 }
 
-int	ft_atoi(char *str)
+unsigned int	ft_calcdec(unsigned int nbrlen)
 {
-	int	nbrlen;
-	int	dec;
-	int	i;
-	int	res;
-	int	sign;
+	unsigned int	dec;
 
-	nbrlen = ft_nbrlen(str);
 	dec = 1;
-	i = nbrlen;
-	while (i > 1)
+	while (nbrlen > 1)
 	{
 		dec *= 10;
-		i--;
+		nbrlen--;
 	}
+	return (dec);
+}
+
+int	ft_atoi(char *str)
+{
+	int				nbrlen;
+	unsigned int	dec;
+	int				res;
+	int				sign;
+
+	nbrlen = ft_nbrlen(str);
+	dec = ft_calcdec(nbrlen);
 	res = 0;
 	sign = 1;
 	while (*str != '\0' && nbrlen > 0)
 	{
-		if (*str == '+' || ft_isspace(*str) == 1)
+		if (*str == '+' || ft_isspace(*str) == 1 || *str == '-')
 		{
+			if (*str == '-')
+				sign = -sign;
 			str++;
-			continue ;
-		}
-		if (*str == '-')
-		{
-			str++;
-			sign = -sign;
 			continue ;
 		}
 		res += dec * (*str - '0');
@@ -86,9 +86,9 @@ int	ft_atoi(char *str)
 	}
 	return (res * sign);
 }
-
+/*
 int	main(void)
 {
 	char	str[] = " \r  ---+--+123450ab567";
 	printf("Final result is: %d\n", ft_atoi(str));
-}
+}*/
