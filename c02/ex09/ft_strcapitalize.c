@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 18:46:24 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/15 19:59:49 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/16 19:04:45 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,23 @@ char	*ft_strcapitalize(char *str)
 			pc = str[i - 1];
 			if ((c >= 'a' && c <= 'z')
 				&& !(pc >= 'a' && pc <= 'z')
-				&& !(pc >= 'A' && pc >= 'A')
-				&& !(pc >= '0' && pc >= '0'))
+				&& !(pc >= 'A' && pc <= 'Z')
+				&& !(pc >= '0' && pc <= '9'))
 				str[i] = c - 32;
+			else if ((c >= 'A' && c <= 'Z')
+				&& ((pc >= 'a' && pc <= 'z')
+				|| (pc >= 'A' && pc <= 'Z')
+				|| (pc >= '0' && pc <= '9')))
+				str[i] = c + 32;
 		}
 		i++;
 	}
 	return (str);
 }
-/*
+
 int main()
 {
-	char test[] = "salut, comment tu vas ? 42mots";
+	char test[] = " salut, comment tu vAs MON amie ? 42mots";
     	int		i;
 	char	c;
 	
@@ -56,4 +61,4 @@ int main()
 		i++;
 	}
 	return (0);
-}*/
+}
