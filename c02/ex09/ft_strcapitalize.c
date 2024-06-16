@@ -6,11 +6,35 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 18:46:24 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/16 19:04:45 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/16 19:29:16 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+
+unsigned int	must_be_capitalized(char c, char pc)
+{
+	if ((c >= 'a' && c <= 'z')
+		&& !(pc >= 'a' && pc <= 'z')
+		&& !(pc >= 'A' && pc <= 'Z')
+		&& !(pc >= '0' && pc <= '9'))
+	{
+		return (1);
+	}
+	return (0);
+}
+
+unsigned int	must_be_lowercased(char c, char pc)
+{
+	if ((c >= 'A' && c <= 'Z')
+		&& ((pc >= 'a' && pc <= 'z')
+			|| (pc >= 'A' && pc <= 'Z')
+			|| (pc >= '0' && pc <= '9')))
+	{
+		return (1);
+	}
+	return (0);
+}
 
 char	*ft_strcapitalize(char *str)
 {
@@ -30,25 +54,19 @@ char	*ft_strcapitalize(char *str)
 		else
 		{
 			pc = str[i - 1];
-			if ((c >= 'a' && c <= 'z')
-				&& !(pc >= 'a' && pc <= 'z')
-				&& !(pc >= 'A' && pc <= 'Z')
-				&& !(pc >= '0' && pc <= '9'))
+			if (must_be_capitalized(c, pc) == 1)
 				str[i] = c - 32;
-			else if ((c >= 'A' && c <= 'Z')
-				&& ((pc >= 'a' && pc <= 'z')
-				|| (pc >= 'A' && pc <= 'Z')
-				|| (pc >= '0' && pc <= '9')))
+			else if (must_be_lowercased(c, pc))
 				str[i] = c + 32;
 		}
 		i++;
 	}
 	return (str);
 }
-
+/*
 int main()
 {
-	char test[] = " salut, comment tu vAs MON amie ? 42mots";
+	char test[] = "hello-world!42Goodbye!";
     	int		i;
 	char	c;
 	
@@ -61,4 +79,4 @@ int main()
 		i++;
 	}
 	return (0);
-}
+}*/
