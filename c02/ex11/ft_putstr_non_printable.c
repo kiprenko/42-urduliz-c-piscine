@@ -6,16 +6,38 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 21:11:11 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/15 21:49:17 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/16 13:27:06 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
 
+void	ft_printchar_non_printable(unsigned char c)
+{
+	int	dec;
+	int	rem;
+
+	write(1, "\\0", 2);
+	dec = c;
+	while (dec != 0)
+	{
+		rem = dec % 16;
+		if (rem < 10)
+		{
+			c = rem + '0';
+			write(1, &c, 1);
+		}
+		else
+		{
+			c = rem + 'a' - 10;
+			write(1, &c, 1);
+		}
+		dec /= 16;
+	}
+}
+
 void	ft_putstr_non_printable(char *str)
 {
-	int			i;
-	int			dec;
-	int			rem;
+	int				i;
 	unsigned char	c;
 
 	i = 0;
@@ -24,23 +46,7 @@ void	ft_putstr_non_printable(char *str)
 		c = (unsigned char) str[i];
 		if (c < 32 || c == 127)
 		{
-			write(1, "\\0", 2);
-			dec = c;
-			while (dec != 0)
-			{
-				rem = dec % 16;
-				if (rem < 10)
-				{
-					c = rem + '0';
-					write(1, &c, 1);
-				}
-				else
-				{
-					c = rem + 'a' - 10;
-					write(1, &c, 1);
-				}
-				dec /= 16;
-			}
+			ft_printchar_non_printable(c);
 		}
 		else
 		{
@@ -49,10 +55,10 @@ void	ft_putstr_non_printable(char *str)
 		i++;
 	}
 }
-
+/*
 int	main(void)
 {
-	char	str[] = "Coucou\ntu vas bien ?";
+	char	str[] = "Coucou\ntu \tvas bien\r ?";
 	ft_putstr_non_printable(str);
 	return (0);
-}
+}*/
