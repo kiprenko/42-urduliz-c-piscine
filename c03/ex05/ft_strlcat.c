@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 17:38:30 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/16 18:22:12 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/17 21:04:59 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -36,11 +36,12 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 		return (srclen + size);
 	}
 	i = 0;
-	while (src[i] != '\0' && destlen < size - 1)
+	while (src[i] != '\0' && destlen + i < size - 1)
 	{
-		dest[destlen++] = src[i++];
+		dest[destlen + i] = src[i];
+		i++;
 	}
-	dest[destlen] = '\0';
+	dest[destlen + i] = '\0';
 	return (destlen + srclen);
 }
 /*
