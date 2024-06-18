@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 18:26:49 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/18 21:42:27 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/18 21:45:01 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -29,14 +29,14 @@ int	ft_strcmp(char *s1, char *s2)
 
 void	ft_sort_params(int argc, char **argv)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*swap;
+
 	if (argc < 2)
 	{
 		return ;
 	}
-
 	i = 1;
 	while (i < argc - 1)
 	{
