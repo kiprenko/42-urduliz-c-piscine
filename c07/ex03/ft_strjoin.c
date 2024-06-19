@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 23:30:57 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/19 10:30:44 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/19 10:54:45 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -39,23 +39,25 @@ unsigned int	ft_count_cat_len(int size, char **strs, char *sep)
 	return (catlen);
 }
 
-char	*ft_strjoin(int size, char **strs, char *sep)
+void	ft_put_sep(int *k, char *cat, char *sep)
 {
-	char	*cat;
-	int		i;
-	int		j;
-	int		k;
-	int		m;
+	int	m;
 
-	if (size <= 0)
+	m = 0;
+	while (sep[m] != '\0')
 	{
-		cat = (char *) malloc(sizeof(char));
-		cat[0] = '\0';
-		return (cat);
+		cat[*k] = sep[m];
+		m++;
+		(*k)++;
 	}
-	cat = (char *) malloc(ft_count_cat_len(size, strs, sep) * sizeof(char));
-	if (cat == NULL)
-		return (NULL);
+}
+
+void	ft_join(int size, char **strs, char *sep, char *cat)
+{
+	int	i;
+	int	j;
+	int	k;
+
 	i = 0;
 	k = 0;
 	while (i < size)
@@ -69,17 +71,33 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 		}
 		if (i + 1 < size)
 		{
-			m = 0;
-			while (sep[m] != '\0')
-			{
-				cat[k] = sep[m];
-				m++;
-				k++;
-			}
+			ft_put_sep(&k, cat, sep);
 		}
 		i++;
 	}
-	cat[k] = '\0';
+}
+
+char	*ft_strjoin(int size, char **strs, char *sep)
+{
+	char	*cat;
+	int		catlen;
+
+	if (size <= 0)
+	{
+		cat = (char *) malloc(sizeof(char));
+		if (cat == NULL)
+		{
+			return (NULL);
+		}
+		cat[0] = '\0';
+		return (cat);
+	}
+	catlen = ft_count_cat_len(size, strs, sep);
+	cat = (char *) malloc(catlen * sizeof(char));
+	if (cat == NULL)
+		return (NULL);
+	ft_join(size, strs, sep, cat);
+	cat[catlen - 1] = '\0';
 	return (cat);
 }
 /*
@@ -127,4 +145,5 @@ int main() {
     free(result);
 
     return 0;
-}*/
+}
+*/
