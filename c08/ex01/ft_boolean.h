@@ -6,12 +6,12 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:41:00 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/19 21:33:50 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/20 22:38:33 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_BOOL_H
-# define T_BOOL_H
+#ifndef FT_BOOLEAN_H
+# define FT_BOOLEAN_H
 
 # include <unistd.h>
 
