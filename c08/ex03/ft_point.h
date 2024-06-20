@@ -6,16 +6,16 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 00:33:11 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/21 00:37:57 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/21 00:43:05 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_POINT_H
 # define FT_POINT_H
 
-typedef struct
+typedef struct t_point
 {
 	int	x;
 	int	y;
-} t_point;
+}	t_point;
 #endif
