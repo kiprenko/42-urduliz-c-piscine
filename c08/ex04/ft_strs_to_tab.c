@@ -46,8 +46,8 @@ unsigned int	ft_to_s_stock_str(char *str, struct s_stock_str *s)
 
 void	ft_term_arr(struct s_stock_str *s)
 {
-	s->str = NULL;
-	s->copy = NULL;
+	s->str = 0;
+	s->copy = 0;
 	s->size = 0;
 }
 
@@ -62,15 +62,10 @@ struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 	i = 0;
 	while (i < ac)
 	{
-		if (ft_to_s_stock_str(av[i], &(s[i])))
+		if (!ft_to_s_stock_str(av[i], &(s[i])))
 			return (NULL);
 		i++;
 	}
 	ft_term_arr(&(s[ac]));
 	return (s);
-}
-
-int	main(void)
-{
-	return (0);
 }
