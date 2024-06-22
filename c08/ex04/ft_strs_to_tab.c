@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 00:47:25 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/22 15:41:27 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/22 19:57:35 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -33,7 +33,7 @@ unsigned int	ft_to_s_stock_str(char *str, struct s_stock_str *s)
 	strlen = ft_strlen(str);
 	s->size = strlen;
 	s->str = str;
-	s->copy = malloc(strlen * sizeof(char));
+	s->copy = malloc((strlen + 1) * sizeof(char));
 	if (s->copy == NULL)
 		return (0);
 	while (i < strlen)
@@ -41,6 +41,7 @@ unsigned int	ft_to_s_stock_str(char *str, struct s_stock_str *s)
 		s->copy[i] = str[i];
 		i++;
 	}
+	s->copy[i] = '\0';
 	return (1);
 }
 
