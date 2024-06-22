@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 00:47:25 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/22 15:38:43 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/22 15:41:27 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -54,16 +54,16 @@ void	ft_term_arr(struct s_stock_str *s)
 struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 {
 	struct s_stock_str	*s;
-	int	i;
-	
+	int					i;
+
 	s = malloc((ac + 1) * sizeof(struct s_stock_str));
 	if (s == NULL)
-		return NULL;
+		return (NULL);
 	i = 0;
 	while (i < ac)
 	{
 		if (ft_to_s_stock_str(av[i], &(s[i])))
-			return NULL;
+			return (NULL);
 		i++;
 	}
 	ft_term_arr(&(s[ac]));
@@ -72,6 +72,5 @@ struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 
 int	main(void)
 {
-		
 	return (0);
 }
