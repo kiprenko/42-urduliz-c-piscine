@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 15:43:12 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/23 20:28:13 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/23 20:38:42 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -87,7 +87,6 @@ char	**ft_split(char *str, char *charset)
 	char	**split;
 	int		substr_start;
 	int		substr_count;
-	int		skipped;
 
 	size = ft_count_substrs(str, charset);
 	split = malloc((size + 1) * sizeof(char *));
@@ -96,19 +95,12 @@ char	**ft_split(char *str, char *charset)
 	substr_count = 0;
 	while (str[i] != '\0')
 	{
-		skipped = ft_skip_charset(i, str, charset);
-		if (skipped > 0)
+		if (ft_skip_charset(i, str, charset) > 0)
 		{
 			if (i != 0)
-			{
-				ft_str_copy_range(substr_start, i, str, &split[substr_count]);
-				substr_count++;
-			}
-			while (skipped > 0)
-			{
-				i += skipped;
-				skipped = ft_skip_charset(i, str, charset);
-			}
+				ft_str_copy_range(substr_start, i, str, &split[substr_count++]);
+			while (ft_skip_charset(i, str, charset) > 0)
+				i += ft_skip_charset(i, str, charset);
 			substr_start = i;
 		}
 		if (str[i] != '\0')
@@ -119,7 +111,7 @@ char	**ft_split(char *str, char *charset)
 	split[size] = 0;
 	return (split);
 }
-/*
+
 int	main(void)
 {
 	char *str = "String1<div>String2<div><div><div>String3";
@@ -182,4 +174,4 @@ int	main(void)
 		split++;
 	}
 	return (0);
-}*/
+}
