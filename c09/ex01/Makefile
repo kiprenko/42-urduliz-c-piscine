@@ -6,26 +6,27 @@
 #    By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/22 17:49:54 by ykiprenk          #+#    #+#              #
-#    Updated: 2024/06/23 15:07:57 by ykiprenk         ###   ########.fr        #
+#    Updated: 2024/06/23 15:20:10 by ykiprenk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRC_DIR = srcs
+HDR_DIR = headers
 OBJ_DIR = $(SRC_DIR)
 SRC_FILES = ft_putchar.c ft_swap.c ft_putstr.c ft_strlen.c ft_strcmp.c
 SRC = $(patsubst %.c,$(SRC_DIR)/%.c,$(SRC_FILES))
 OBJ = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 LIB_FILE = libft.a
 
-all: $(OBJ)
-	ar rcs $(LIB_FILE) $(OBJ_DIR)/*.o
-	ranlib $(LIB_FILE)
+all: $(LIB_FILE)
 
-$(OBJ_DIR)/%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(LIB_FILE): $(OBJ)
+	ar rcs $@ $(OBJ)
 
-$(LIB_FILE): all
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) -I$(HDR_DIR) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
