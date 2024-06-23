@@ -6,13 +6,13 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 15:43:12 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/23 20:05:25 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/23 20:28:13 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
 #include <stdio.h>
 
-unsigned int ft_skip_charset(int start, char *str, char *charset)
+unsigned int	ft_skip_charset(int start, char *str, char *charset)
 {
 	int	i;
 
@@ -29,35 +29,37 @@ unsigned int ft_skip_charset(int start, char *str, char *charset)
 	return (0);
 }
 
+void	ft_skip_seq_charsets(unsigned int *i, char *str, char *charset)
+{
+	int	skipped;
+
+	skipped = ft_skip_charset(*i, str, charset);
+	while (skipped > 0)
+	{
+		*i += skipped;
+		skipped = ft_skip_charset(*i, str, charset);
+	}
+}
+
 unsigned int	ft_count_substrs(char *str, char *charset)
 {
 	unsigned int	count;
 	unsigned int	i;
-	unsigned int	skipped;
 	unsigned int	substr_start;
 
 	count = 0;
 	i = 0;
 	while (str[i] != '\0')
 	{
-		skipped = ft_skip_charset(i, str, charset);
-		if (skipped > 0)
+		if (ft_skip_charset(i, str, charset) > 0)
 		{
 			substr_start = i;
-			while (skipped > 0)
-			{
-				i += skipped;
-				skipped = ft_skip_charset(i, str, charset);
-			}
+			ft_skip_seq_charsets(&i, str, charset);
 			if (substr_start > 0)
-			{
 				count++;
-			}
 		}
-		else if(str[i + 1] == '\0')
-		{
+		else if (str[i + 1] == '\0')
 			count++;
-		}
 		i++;
 	}
 	return (count);
@@ -73,19 +75,19 @@ void	ft_str_copy_range(int start, int end, char *str, char **copy)
 	{
 		(*copy)[i] = str[start];
 		start++;
-		i++;	
+		i++;
 	}
 	(*copy)[end] = '\0';
 }
 
 char	**ft_split(char *str, char *charset)
 {
-	int	i;
-	int	size;
+	int		i;
+	int		size;
 	char	**split;
-	int	substr_start;
-	int	substr_count;
-	int	skipped;
+	int		substr_start;
+	int		substr_count;
+	int		skipped;
 
 	size = ft_count_substrs(str, charset);
 	split = malloc((size + 1) * sizeof(char *));
@@ -117,7 +119,7 @@ char	**ft_split(char *str, char *charset)
 	split[size] = 0;
 	return (split);
 }
-
+/*
 int	main(void)
 {
 	char *str = "String1<div>String2<div><div><div>String3";
@@ -180,4 +182,4 @@ int	main(void)
 		split++;
 	}
 	return (0);
-}
+}*/
