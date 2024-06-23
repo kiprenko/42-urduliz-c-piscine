@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 15:43:12 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/23 19:11:51 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/23 19:44:19 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -65,19 +65,19 @@ unsigned int	ft_count_substrs(char *str, char *charset)
 	return (count);
 }
 
-void	ft_str_copy_range(int start, int end, char *str, char *copy)
+void	ft_str_copy_range(int start, int end, char *str, char **copy)
 {
 	int	i;
 
-	copy = malloc((end - start + 1) * sizeof(char));
+	*copy = malloc((end - start + 1) * sizeof(char));
 	i = 0;
 	while (start < end)
 	{
-		copy[i] = str[start];
+		(*copy)[i] = str[start];
 		start++;
 		i++;	
 	}
-	str[end] = '\0';
+	(*copy)[end] = '\0';
 }
 
 char	**ft_split(char *str, char *charset)
@@ -86,26 +86,36 @@ char	**ft_split(char *str, char *charset)
 	int	size;
 	char	**split;
 	int	substr_start;
+	int	substr_count;
 	int	skipped;
 
 	size = ft_count_substrs(str, charset);
+	printf("Substrings count = [%d]\n", size);
 	split = malloc((size + 1) * sizeof(char *));
 	i = 0;
-	size = 0;
 	substr_start = 0;
+	substr_count = 0;
 	while (str[i] != '\0')
 	{
 		skipped = ft_skip_charset(i, str, charset);
 		if (skipped > 0)
 		{
-			ft_str_copy_range(substr_start, i, str, split[size++]);
+			printf("Copying substring [%d, %d] into the array\n", substr_start, i);
+			ft_str_copy_range(substr_start, i, str, &split[substr_count]);
+			substr_count++;
 			while (skipped > 0)
 			{
 				i += skipped;
-				skipped = ft_skip_charset(i + 1, str, charset);
+				skipped = ft_skip_charset(i, str, charset);
 			}
+			substr_start = i;
 		}
 		i++;
+	}
+	if (substr_start != i)
+	{
+		printf("Copying last substring [%d, %d] into the array\n", substr_start, i);
+		ft_str_copy_range(substr_start, i, str, &split[substr_count]);
 	}
 	split[size] = 0;
 	return (split);
@@ -113,8 +123,14 @@ char	**ft_split(char *str, char *charset)
 
 int	main(void)
 {
-	char str[] = "<div><div>String1<div>String2<div><div><div>String3<div>String4<div><div>";
+	char str[] = "String1<div>String2<div><div><div>String3String4";
 	char charset[] = "<div>";
-	printf("Substr count = [%d]", ft_count_substrs(str, charset));
+	char **split = ft_split(str, charset);
+
+	while (*split)
+	{
+		printf("Substring: %s\n", *split);
+		split++;
+	}
 	return (0);
 }
