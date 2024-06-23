@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 15:43:12 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/23 20:38:42 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/23 20:41:58 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -83,13 +83,11 @@ void	ft_str_copy_range(int start, int end, char *str, char **copy)
 char	**ft_split(char *str, char *charset)
 {
 	int		i;
-	int		size;
 	char	**split;
 	int		substr_start;
 	int		substr_count;
 
-	size = ft_count_substrs(str, charset);
-	split = malloc((size + 1) * sizeof(char *));
+	split = malloc((ft_count_substrs(str, charset) + 1) * sizeof(char *));
 	i = 0;
 	substr_start = 0;
 	substr_count = 0;
@@ -107,8 +105,8 @@ char	**ft_split(char *str, char *charset)
 			i++;
 	}
 	if (substr_start != i && substr_start != i - 1)
-		ft_str_copy_range(substr_start, i, str, &split[substr_count]);
-	split[size] = 0;
+		ft_str_copy_range(substr_start, i, str, &split[substr_count++]);
+	split[substr_count] = 0;
 	return (split);
 }
 
@@ -164,7 +162,7 @@ int	main(void)
 		split++;
 	}
 
-	str = "<div>String1<div>String2<div>String3<div>String4<div>";
+	str = "<div>String1<div>String2<div><div>String3<div>String4<div>";
 	charset = "<div>";
 	printf("String is [%s] charset [%s]\n", str, charset);
 	split = ft_split(str, charset);
