@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 15:43:12 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/23 20:41:58 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/24 20:43:42 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -82,10 +82,10 @@ void	ft_str_copy_range(int start, int end, char *str, char **copy)
 
 char	**ft_split(char *str, char *charset)
 {
-	int		i;
-	char	**split;
-	int		substr_start;
-	int		substr_count;
+	unsigned int		i;
+	char				**split;
+	unsigned int		substr_start;
+	unsigned int		substr_count;
 
 	split = malloc((ft_count_substrs(str, charset) + 1) * sizeof(char *));
 	i = 0;
@@ -97,8 +97,7 @@ char	**ft_split(char *str, char *charset)
 		{
 			if (i != 0)
 				ft_str_copy_range(substr_start, i, str, &split[substr_count++]);
-			while (ft_skip_charset(i, str, charset) > 0)
-				i += ft_skip_charset(i, str, charset);
+			ft_skip_seq_charsets(&i, str, charset);
 			substr_start = i;
 		}
 		if (str[i] != '\0')
@@ -109,7 +108,7 @@ char	**ft_split(char *str, char *charset)
 	split[substr_count] = 0;
 	return (split);
 }
-
+/*
 int	main(void)
 {
 	char *str = "String1<div>String2<div><div><div>String3";
@@ -172,4 +171,4 @@ int	main(void)
 		split++;
 	}
 	return (0);
-}
+}*/
