@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 20:57:46 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/24 22:59:45 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/25 21:00:07 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -35,7 +35,7 @@ void	ft_read_file(char *file_name)
 	fdef = open(file_name, O_RDONLY);
 	if (fdef == -1)
 	{
-		write(1, "Cannot read file.\n", 19);
+		write(1, "Cannot read file.\n", 18);
 		return ;
 	}
 	bytes_read = read(fdef, buffer, BUFFER_SIZE - 1);
@@ -47,12 +47,12 @@ void	ft_read_file(char *file_name)
 	}
 	if (bytes_read == -1)
 	{
-		write(1, "Cannot read file.\n", 19);
+		write(1, "Cannot read file.\n", 18);
 		close(fdef);
 		return ;
 	}
 	if (close(fdef) == -1)
-		write(1, "Cannot read file.\n", 19);
+		write(1, "Cannot read file.\n", 18);
 }
 
 int	main(int argc, char **argv)
@@ -60,12 +60,12 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 	{
 		write(1, "File name is missing.\n", 22);
-		return (0);
+		return (1);
 	}
 	else if (argc > 2)
 	{
 		write(1, "Too many arguments.\n", 20);
-		return (0);
+		return (1);
 	}
 	ft_read_file(argv[1]);
 	return (0);
