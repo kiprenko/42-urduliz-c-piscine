@@ -6,7 +6,7 @@
 /*   By: ykiprenk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 20:57:46 by ykiprenk          #+#    #+#             */
-/*   Updated: 2024/06/25 21:46:30 by ykiprenk         ###   ########.fr       */
+/*   Updated: 2024/06/26 21:27:47 by ykiprenk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -55,16 +55,24 @@ void	ft_read_file(char *file_name)
 		write(1, "Cannot read file.\n", 18);
 }
 
-void	ft_process_input()
+void	ft_process_standard_input()
 {
+	char buffer[30];
+	ssize_t bytes_read;
 
+	bytes_read = read(0, buffer, sizeof(buffer));
+	while (bytes_read > 0)
+	{
+		write(1, buffer, bytes_read);
+		bytes_read = read(0, buffer, sizeof(buffer));
+	}
 }
 
 int	main(int argc, char **argv)
 {
 	if (argc < 2)
 	{
-		ft_process_input();
+		ft_process_standard_input();
 	}
 	else if (argc > 2)
 	{
