@@ -1,7 +1,7 @@
 
 # 42 Piscine Repository
 
-**[Ukrainian Version](ua.README.md)** | **[Spanish Version](es.README.md)**
+**[Українська](ua.README.md)** | **[Español](es.README.md)**
 
 This repository contains my exercises and projects from the 42 Piscine.
 
