@@ -16,7 +16,7 @@ This repository contains my exercises and projects from the 42 Piscine.
 The 42 Piscine is an intensive, month-long coding bootcamp that covers the basics of programming in C, shell scripting, and Unix systems. It helps prepare students for the full 42 cursus.
 
 ## Norminette
-The **Norminette** is the tool used at 42 to check the conformity of your C code to the 42 coding style. Before submitting any project, your code should pass the Norminette without any errors.
+The **[Norminette](https://github.com/42School/norminette)** is the tool used at 42 to check the conformity of your C code to the 42 coding style. Before submitting any project, your code should pass the Norminette without any errors.
 
 ### Usage
 You can run Norminette on a file or an entire directory:
